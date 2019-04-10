@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Shuffle
 {
-	public ArrayList<Domino> ShuffleDominoes(ArrayList<Domino> dominoesToShuffle)
+	public static ArrayList<Domino> ShuffleDominoes(ArrayList<Domino> dominoesToShuffle)
 	{
 		Collections.shuffle(dominoesToShuffle);
 		
