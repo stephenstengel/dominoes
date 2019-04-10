@@ -18,15 +18,29 @@ public class Player
 	}
 	
 	
-	public void displayHand()
+	public String handToString()
 	{
+		String outString = "";
+		
 		//iterate though arraylist and print each domino
 		//Note: the dominoes have a defined toString() method.
+		
+		return outString;
 	}
 	
 	
 	public void setPlayerAsWinner()
 	{
 		isWinner = true;
+	}
+	
+	//for the whole player class.
+	public String toString()
+	{
+		String outString = "";
+		outString += isWinner + "\n";
+		outString += handToString();
+		
+		return outString;
 	}
 }
