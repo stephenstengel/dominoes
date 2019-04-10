@@ -10,43 +10,40 @@ import java.util.ArrayList;
 
 public class Domino
 {
-    private int left;
-    private int right;
+    private int leftSquare;
+    private int rightSquare;
     
     //constructor
     public Domino(int leftInput, int rightInput)
     {
-		setSquares(leftInput, rightInput);
+		setSquareValues(leftInput, rightInput);
 		
-		//test printout
-		//System.out.println("Domino " + left + right + " created!");
-		
+		//System.out.println("Domino " + this + " created!");
 	}
 	
 	
-	//called by constructor to set the values of the squares in this domino.
-	private void setSquares(int leftInput, int rightInput)
+	private void setSquareValues(int leftInput, int rightInput)
 	{
-		left = leftInput;
-		right = rightInput;
+		leftSquare = leftInput;
+		rightSquare = rightInput;
 	}
 	
 	
-	//getter methods. Or we could just make left and right public.
-	public int getLeft()
+	//getter methods. Or we could just make leftSquare and rightSquare public.
+	public int getLeftSquare()
 	{
-		return left;
+		return leftSquare;
 	}
 	
-	public int getRight()
+	public int getRightSquare()
 	{
-		return right;
+		return rightSquare;
 	}
 	
 	//print this domino
 	public String toString()
 	{
-		return "[" + left + "|" + right + "]";
+		return "[" + leftSquare + "|" + rightSquare + "]";
 	}
     
 }
