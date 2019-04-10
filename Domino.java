@@ -1,5 +1,6 @@
 /*
- * Project 1
+ * Domino.java
+ * 
  * Contains the data structure for an individual domino
  * 
  */
@@ -40,6 +41,12 @@ public class Domino
 	public int getRight()
 	{
 		return right;
+	}
+	
+	//print this domino
+	public String toString()
+	{
+		return "[" + left + "|" + right + "]";
 	}
     
 }
