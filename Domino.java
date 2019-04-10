@@ -13,7 +13,7 @@ public class Domino
     private int right;
     
     //constructor
-    Domino(int leftInput, int rightInput)
+    public Domino(int leftInput, int rightInput)
     {
 		setSquares(leftInput, rightInput);
 		
