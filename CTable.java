@@ -10,7 +10,15 @@
 
 public class CTable {
 	
-	private ArrayList dominoesOnTable;
+	//An arraylist filled with CDominoes objects.
+	private ArrayList<CDominoes> dominoesOnTable;
+	
+	
+	//constructor
+	public CTable()
+	{
+		
+	}
 	
 	
 	//Will print the current pieces on the table.
