@@ -38,12 +38,6 @@ public class Table
 	//Will print the current pieces on the table.
 	public String toString()
 	{
-		//call player1.toString
-		
-		//player2.toString()
-		
-		//printTablePieces()
-		
 		return player1 + "\n" + player2 + "\n" + printTablePieces();
 	}
 	
@@ -70,6 +64,7 @@ public class Table
 	
 	
 	//might need/want to make static later?
+	//change to iterate through printing punctuation and toString of each domino.
 	private String printTablePieces()
 	{
 		return dominoesOnTable.toString(); //change later
