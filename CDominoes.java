@@ -16,6 +16,10 @@ public class CDominoes
     CDominoes(int leftInput, int rightInput)
     {
 		setSquares(leftInput, rightInput);
+		
+		//test printout
+		//System.out.println("Domino " + left + right + " created!");
+		
 	}
 	
 	
@@ -24,6 +28,18 @@ public class CDominoes
 	{
 		left = leftInput;
 		right = rightInput;
+	}
+	
+	
+	//getter methods. Or we could just make left and right public.
+	public int getLeft()
+	{
+		return left;
+	}
+	
+	public int getRight()
+	{
+		return right;
 	}
     
 }
