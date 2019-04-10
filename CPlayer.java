@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 public class CPlayer
 {
-	ArrayList<CDominoes> hand;
+	ArrayList<Domino> hand;
 	
 	//constructor
-	public CPlayer(ArrayList<CDominoes> inputHand)
+	public CPlayer(ArrayList<Domino> inputHand)
 	{
 		hand = inputHand;
 	}

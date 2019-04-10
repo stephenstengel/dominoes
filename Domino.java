@@ -7,13 +7,13 @@
 import java.util.ArrayList;
  
 
-public class CDominoes
+public class Domino
 {
     private int left;
     private int right;
     
     //constructor
-    CDominoes(int leftInput, int rightInput)
+    Domino(int leftInput, int rightInput)
     {
 		setSquares(leftInput, rightInput);
 		

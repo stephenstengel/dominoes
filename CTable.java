@@ -11,7 +11,7 @@
 public class CTable {
 	
 	//An arraylist filled with CDominoes objects.
-	private ArrayList<CDominoes> dominoesOnTable;
+	private ArrayList<Domino> dominoesOnTable;
 	
 	
 	//constructor

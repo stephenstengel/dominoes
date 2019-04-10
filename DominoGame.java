@@ -6,7 +6,7 @@
  */
 
 
-public class Dominoes
+public class DominoGame
 {
 	public static void main (String args[])
 	{

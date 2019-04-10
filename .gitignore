@@ -2,3 +2,6 @@ Dominoes.class
 CTable.class
 CDominoes.class
 CPlayer.class
+CRandom.class
+Domino.class
+DominoGame.class
