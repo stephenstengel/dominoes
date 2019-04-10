@@ -1,28 +1,32 @@
 /*
- * Project 1
- * 
- * Will have data structure to hold the players hand.
- * 
- * Will have methods to display hand.
- * 
+ * Player.java
  */
 
 import java.util.ArrayList;
 
 public class Player
 {
-	ArrayList<Domino> hand;
+	private ArrayList<Domino> hand;
+	private boolean isWinner;
 	
-	//constructor
+	
+	//constructor. Accepts arraylist of dominoes to use as hand.
 	public Player(ArrayList<Domino> inputHand)
 	{
 		hand = inputHand;
+		isWinner = false;
 	}
 	
 	
 	public void displayHand()
 	{
 		//iterate though arraylist and print each domino
+		//Note: the dominoes have a defined toString() method.
 	}
 	
+	
+	public void setPlayerAsWinner()
+	{
+		isWinner = true;
+	}
 }
