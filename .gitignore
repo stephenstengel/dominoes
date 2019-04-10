@@ -5,3 +5,6 @@ CPlayer.class
 CRandom.class
 Domino.class
 DominoGame.class
+Player.class
+Shuffle.class
+Table.class

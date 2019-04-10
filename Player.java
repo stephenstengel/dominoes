@@ -9,12 +9,12 @@
 
 import java.util.ArrayList;
 
-public class CPlayer
+public class Player
 {
 	ArrayList<Domino> hand;
 	
 	//constructor
-	public CPlayer(ArrayList<Domino> inputHand)
+	public Player(ArrayList<Domino> inputHand)
 	{
 		hand = inputHand;
 	}

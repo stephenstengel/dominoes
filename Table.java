@@ -8,14 +8,14 @@
  import java.util.ArrayList;
  
 
-public class CTable {
+public class Table {
 	
 	//An arraylist filled with CDominoes objects.
 	private ArrayList<Domino> dominoesOnTable;
 	
 	
 	//constructor
-	public CTable()
+	public Table()
 	{
 		
 	}

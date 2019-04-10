@@ -2,7 +2,7 @@
  *Project 1
  */
 
-public class CRandom {
+public class Shuffle {
 
     
     
