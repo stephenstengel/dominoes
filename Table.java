@@ -22,6 +22,8 @@ public class Table
 	public Table()
 	{
 		//make the dominoes
+		dominoesOnTable = createDominoes();
+		
 		
 		//move first seven to player1.hand or whatever
 		
@@ -46,11 +48,24 @@ public class Table
 	}
 	
 	
+	//need code added to create the correct number and combinations.
 	private ArrayList<Domino> createUnsortedDominoes()
 	{
 		ArrayList<Domino> unsortedDominoes = new ArrayList<Domino>();
 		
 		return unsortedDominoes;
+	}
+	
+	private ArrayList<Domino> sortDominoes(ArrayList<Domino> dominoesToSort)
+	{
+		return Shuffle.shuffleDominoes(dominoesToSort);
+	}
+	
+	private ArrayList<Domino> createDominoes()
+	{
+		ArrayList<Domino> someDominoes = createUnsortedDominoes();
+		
+		return sortDominoes(someDominoes);
 	}
 	
 	
