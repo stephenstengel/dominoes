@@ -38,7 +38,7 @@ public class Table
 	//Will print the current pieces on the table.
 	public String toString()
 	{
-		return player1 + "\n" + player2 + "\n" + printTablePieces();
+		return "Player1: " + player1 + "\nPlayer2: " + player2 + "\nTable: " + printTablePieces();
 	}
 	
 	
