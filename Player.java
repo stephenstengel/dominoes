@@ -24,6 +24,10 @@ public class Player
 		
 		//iterate though arraylist and print each domino
 		//Note: the dominoes have a defined toString() method.
+		for (int i=0; i<hand.size(); i++){
+			outString += hand.get(i);
+			
+		}
 		
 		return outString;
 	}
