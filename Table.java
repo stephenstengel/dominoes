@@ -32,7 +32,7 @@ public class Table
 		player1hand = new ArrayList<Domino>();
 		for (int i=0; i <7; i++){
 			player1hand.add(dominoesOnTable.get(i));
-			dominoesOnTable.remove(i);
+			dominoesOnTable.remove(0);
 			
 		}
 		player1= new Player(player1hand);
@@ -43,7 +43,7 @@ public class Table
 		player2hand = new ArrayList<Domino>();
 		for (int i=7; i<14; i++){
 			player2hand.add(dominoesOnTable.get(i));
-			dominoesOnTable.remove(i);
+			dominoesOnTable.remove(0);
 			
 		}
 		player2=new Player(player2hand);
