@@ -47,4 +47,17 @@ public class Player
 		
 		return outString;
 	}
+	
+	public int getHandSize()
+	{
+		return hand.size();
+	}
+	
+	public ArrayList<Domino> getHand()
+	{
+		ArrayList<Domino> copy = new ArrayList<Domino>();
+		copy = hand;
+		
+		return copy;
+	}
 }

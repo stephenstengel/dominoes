@@ -8,6 +8,7 @@
  */
  
  import java.util.ArrayList;
+ import java.util.Random;
  
 
 public class Table
@@ -58,44 +59,30 @@ public class Table
 	//Method to determine which player has the highest sum of domino dots.
 	public int highestDomino()
 	{
-		int max1 = 0;
-		int max2 = 0;
-
-		for (int i = 0; i < 7; i++)
-		{
-			int sum1 = player1hand.get(i).getLeftSquare()
-						+ player1hand.get(i).getRightSquare();
-			
-			if (sum1 > max1)
-			{
-				max1 = sum1;
-			}
-		}
-		 
-		for(int j = 0; j < 7; j++)
-		{
-			int sum2 = player2hand.get(j).getLeftSquare()
-						+ player2hand.get(j).getRightSquare();
- 
-			if (sum2 > max2)
-			{
-				max2 = sum2; 
-			}
-		}
+		int sumPlayer1 = getSumOfDots(player1);
+		int sumPlayer2 = getSumOfDots(player2);
 		
-		if (max1 > max2)
+		System.out.println("player1: " + sumPlayer1);
+		System.out.println("player2: " + sumPlayer2);
+		
+		if (sumPlayer1 > sumPlayer2)
 		{
 			System.out.println("\nPlayer 1 has the largest domino so he will place first");
-			//returns number of player that goes first in case we need it in DominoGame
 
 			return 1;
 		}
-		else if (max1 == max2)
+		else if (sumPlayer1 == sumPlayer2)
 		{
-			//we could also make the player who starts random 
-			System.out.println("\nBoth players are tied for largest domino Player 1 places first");
+			System.out.println("\nBoth players are tied for number of dots!");
+			System.out.println("Chosing at random...");
+
+			Random randomObject = new Random();
+			int randInt = randomObject.nextInt();
+			int returnVal = randInt % 2;
+			System.out.println("Player " + returnVal + " goes first!");
+			System.out.println("##############################################:");
 			
-			return 1;
+			return returnVal;
 		}
 		else
 		{
@@ -105,6 +92,21 @@ public class Table
 		}
 	}
 	
+	//Gets the sum of dots on a domino
+	public int getSumOfDots(Player aPlayer)
+	{
+		int sumOfDots = 0;
+		
+		for (int i = 0; i < aPlayer.getHandSize(); i++)
+		{
+			int temp = aPlayer.getHand().get(i).getLeftSquare()
+						+ aPlayer.getHand().get(i).getRightSquare();
+
+			sumOfDots += temp;	
+		}
+		
+		return sumOfDots;
+	}
 	
 	
 	//Will print the current pieces on the table.
