@@ -26,9 +26,6 @@ public class Table
 	{
 		//make the dominoes
 		dominoesOnTable = createDominoes();
-		
-		ArrayList<Domino> player1hand;
-		ArrayList<Domino> player2hand; 
 
 		player1 = new Player( makeStartHand() );
 		player2 = new Player( makeStartHand() );
