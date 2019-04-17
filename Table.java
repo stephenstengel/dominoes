@@ -55,52 +55,54 @@ public class Table
 		
 	}
 	
-	//method to determine which player has the highest domino 
-	public int highestDomino (){
-		
-		int max1=0;
-		int max2=0;
-		for (int i=0; i<7;i++){
+	//Method to determine which player has the highest sum of domino dots.
+	public int highestDomino()
+	{
+		int max1 = 0;
+		int max2 = 0;
+
+		for (int i = 0; i < 7; i++)
+		{
+			int sum1 = player1hand.get(i).getLeftSquare()
+						+ player1hand.get(i).getRightSquare();
 			
-			int sum1= player1hand.get(i).getLeftSquare()+player1hand.get(i).getRightSquare();
-			
-			if (sum1>max1){
-				
-				max1=sum1;
+			if (sum1 > max1)
+			{
+				max1 = sum1;
 			}
-			
-		}	
+		}
 		 
-		 for(int j=0; j<7;j++){
-			 
-			 int sum2= player2hand.get(j).getLeftSquare()+player2hand.get(j).getRightSquare();
-			 
-			 if (sum2>max2){
-				 max2=sum2;
-				 
-			 }
-		 }
-		
-		
-		if (max1>max2){
-			System.out.print("\nPlayer 1 has the largest domino so he will place first");
-			//returns number of player that goes first in case we need it in DominoGame
-			return 1 ;
-		
-	
-		}else if(max1==max2){
-			//we could also make the player who starts random 
-			System.out.print("\nBoth players are tied for largest domino Player 1 places first");
-			
-			return 1;
-		}else{
-			System.out.print("\nPlayer 2 has the largest domino so he will place first");
-			return 2;
-			
+		for(int j = 0; j < 7; j++)
+		{
+			int sum2 = player2hand.get(j).getLeftSquare()
+						+ player2hand.get(j).getRightSquare();
+ 
+			if (sum2 > max2)
+			{
+				max2 = sum2; 
+			}
 		}
 		
-		
-		
+		if (max1 > max2)
+		{
+			System.out.println("\nPlayer 1 has the largest domino so he will place first");
+			//returns number of player that goes first in case we need it in DominoGame
+
+			return 1;
+		}
+		else if (max1 == max2)
+		{
+			//we could also make the player who starts random 
+			System.out.println("\nBoth players are tied for largest domino Player 1 places first");
+			
+			return 1;
+		}
+		else
+		{
+			System.out.println("\nPlayer 2 has the largest domino so he will place first");
+
+			return 2;
+		}
 	}
 	
 	
