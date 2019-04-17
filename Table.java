@@ -17,43 +17,35 @@ public class Table
 	
 	public Player player1;
 	public Player player2;
-	private ArrayList<Domino> player1hand;
-	private ArrayList<Domino> player2hand; 
-	
-	
+
+	private final int HAND_SIZE = 7;
+
+
 	//constructor
 	public Table()
 	{
 		//make the dominoes
 		dominoesOnTable = createDominoes();
 		
-		
-		//move first seven to player1.hand or whatever
-		//pieces that are moved to hand should are removed from table 
-		player1hand = new ArrayList<Domino>();
-		for (int i=0; i <7; i++){
-			player1hand.add(dominoesOnTable.get(i));
-			dominoesOnTable.remove(0);
-			
+		ArrayList<Domino> player1hand;
+		ArrayList<Domino> player2hand; 
+
+		player1 = new Player( makeStartHand() );
+		player2 = new Player( makeStartHand() );
+
+		//remaining dominoes stay in dominoesOnTable
+	}
+
+
+	//Make a player starting hand for use the constructor
+	private ArrayList<Domino> makeStartHand()
+	{
+		ArrayList<Domino> startHand = new ArrayList<Domino>();
+		for (int i = 0; i < HAND_SIZE; i++){
+			startHand.add( dominoesOnTable.remove(0) );
 		}
-		player1= new Player(player1hand);
-		
-		
-		
-		//move next seven to player2
-		player2hand = new ArrayList<Domino>();
-		for (int i=7; i<14; i++){
-			player2hand.add(dominoesOnTable.get(i));
-			dominoesOnTable.remove(0);
-			
-		}
-		player2=new Player(player2hand);
-		//keep remaining in dominoesOnTable
-		
-		
-		
-		
-		
+
+		return startHand;
 	}
 	
 	//Method to determine which player has the highest sum of domino dots.
