@@ -67,7 +67,8 @@ public class Table
 		
 		if (sumPlayer1 > sumPlayer2)
 		{
-			System.out.println("\nPlayer 1 has the largest domino so he will place first");
+			System.out.println("\nPlayer 1 has the largest domino so"
+								+ " they will place first");
 
 			return 1;
 		}
@@ -77,10 +78,8 @@ public class Table
 			System.out.println("Chosing at random...");
 
 			Random randomObject = new Random();
-			int randInt = randomObject.nextInt();
-			int returnVal = randInt % 2;
+			int returnVal = randomObject.nextInt(2) + 1;
 			System.out.println("Player " + returnVal + " goes first!");
-			System.out.println("##############################################:");
 			
 			return returnVal;
 		}
