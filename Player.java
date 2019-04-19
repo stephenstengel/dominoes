@@ -17,6 +17,19 @@ public class Player
 		isWinner = false;
 	}
 	
+	public void removeFromHand(int dIndex)
+	{
+		hand.remove(dIndex);
+		
+		
+	}
+	
+	public void addToHand(ArrayList<Domino> dominoesFromTable)
+	{
+		hand.add(dominoesFromTable);
+		
+		
+	}
 	
 	public String handToString()
 	{
@@ -41,7 +54,7 @@ public class Player
 	//for the whole player class.
 	public String toString()
 	{
-		String outString = "";
+		String outString = "\nWinner:";
 		outString += isWinner + "\n";
 		outString += handToString();
 		

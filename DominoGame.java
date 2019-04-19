@@ -18,7 +18,18 @@ public class DominoGame
 		
 		//run the game
 		
-		startGame.highestDomino();
+		if (startGame.highestDomino()==1)
+		{
+			// call method that places some domino on table and removes it from players hand from table class 
+			startGame.placeDomino(1);
+			
+		}
+		else
+		{
+			startGame.placeDomino(2);
+			
+		}
+		
 		
 	}
 }

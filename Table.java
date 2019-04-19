@@ -96,6 +96,30 @@ public class Table
 		return sumOfDots;
 	}
 	
+	// method to place a domino onto table from players hand 
+	public void placeDomino(int player)
+	{
+		Random randomObject = new Random();
+		if (player==1)		
+		{
+			ArrayList<Domino> hand1= player1.getHand();
+			int dominoIndexOne = randomObject.nextInt(player1.getHandSize());
+			System.out.print("Player 1 places:" + hand1.get(dominoIndexOne));
+			player1.removeFromHand(dominoIndexOne);
+		}else 
+		{
+			ArrayList<Domino> hand2=player2.getHand();
+			int dominoIndexTwo = randomObject.nextInt(player2.getHandSize());
+			System.out.print("Player 2 places: " +hand2.get(dominoIndexTwo));
+			player2.removeFromHand(dominoIndexTwo);
+			
+			
+		}
+		
+		
+	}
+		
+	
 	
 	//Will print the current pieces on the table.
 	public String toString()
