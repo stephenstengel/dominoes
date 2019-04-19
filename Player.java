@@ -16,16 +16,22 @@ public class Player
 		hand = inputHand;
 		isWinner = false;
 	}
-	
-	public void removeFromHand(int dIndex)
+	public boolean getIsWinner()
 	{
-		hand.remove(dIndex);
 		
+		return isWinner;
 		
 	}
-	
-	public void addToHand(ArrayList<Domino> dominoesFromTable)
+	public Domino removeFromHand(int dIndex)
 	{
+		
+		return hand.remove(dIndex);
+		
+	}
+	// take from domino from table and add it to players hand 
+	public void addToHand(Domino dominoesFromTable)
+	{
+		
 		hand.add(dominoesFromTable);
 		
 		
