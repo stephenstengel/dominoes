@@ -79,4 +79,25 @@ public class Player
 		
 		return copy;
 	}
+	
+	public boolean checkIfHandEmpty()
+	{
+		if ( this.getHandSize() <= 0 )
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
+	//checks if hand is empty or if player was set as winner by something else.
+	public boolean checkIfWinner()
+	{
+		if ( this.checkIfHandEmpty() || this.getIsWinner() )
+		{
+			return true;
+		}
+		
+		return false;
+	}
 }
