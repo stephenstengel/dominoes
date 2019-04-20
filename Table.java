@@ -124,6 +124,7 @@ public class Table
 	// method has player1/player2 place a domino based on variable whoseTurn 
 	public void nextMove()
 	{
+		System.out.println("Entering nextMove():");
 		int right = getRightmostSquareInLine();
 		int left = getLeftmostSquareInLine();
 	
@@ -131,6 +132,8 @@ public class Table
 		
 		while (!didPutPieceThisTurn)
 		{
+			System.out.println("put piece while");
+			
 			if ( isMatchInHand(players[whoseTurn]) )
 			{
 				for (int i = 0; i < players[whoseTurn].getHandSize(); i++)
@@ -179,12 +182,23 @@ public class Table
 			}
 			else
 			{
-				while ( !isMatchInHand( players[whoseTurn] ) && !isBoneyardEmpty() )
+				if ( isBoneyardEmpty() )
 				{
-					System.out.println("boneyard loop");
-					//need to check if boneyard empty as well.
-					//if they need to draw and it is empty the other player should be set as winner.
-					drawFromBoneyard();
+					updateTurn();
+					players[ (whoseTurn + 1) % NUM_PLAYERS ].setPlayerAsWinner();
+					System.out.println("Player " + whoseTurn + " cannot draw because boneyard is empty!");
+					
+					return; //void
+				}
+				else
+				{
+					while ( !isMatchInHand( players[whoseTurn] ) && !isBoneyardEmpty() )
+					{
+						System.out.println("boneyard loop");
+						//need to check if boneyard empty as well.
+						//if they need to draw and it is empty the other player should be set as winner.
+						drawFromBoneyard();
+					}
 				}
 			}
 			
