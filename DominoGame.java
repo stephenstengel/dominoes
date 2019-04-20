@@ -48,6 +48,7 @@ public class DominoGame
 			if (myTable.players[i].checkIfWinner() )
 			{
 				System.out.println("\n\nPlayer " + (i + 1) + " is the winner!");
+				System.out.println("Board State:\n" + myTable.toString() );
 			}
 		}
 		
