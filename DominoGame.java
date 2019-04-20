@@ -14,11 +14,10 @@ public class DominoGame
 		
 		//create the table
 		Table myTable= new Table();
-		System.out.println("Players hands (Table shows avaliable pieces):\n\n" + myTable.toString());
+		System.out.println("State of table:\n\n" + myTable.toString());
 		
 		//run the game
-		Domino x; 
-		x = myTable.placeFirstDomino( myTable.highestDomino() );
+		myTable.placeFirstDomino( myTable.highestDomino() );
 		
 		System.out.println( "\n\nNew State:\n" + myTable.toString() + "\nEnd new state print.\n");
 		
