@@ -14,14 +14,17 @@ public class DominoGame
 		
 		//create the table
 		Table myTable= new Table();
-		System.out.println("Players hands (Table shows avaliable pieces):\n\n" +myTable.toString());
+		System.out.println("Players hands (Table shows avaliable pieces):\n\n" + myTable.toString());
 		
 		//run the game
 		Domino x; 
 		x = myTable.placeFirstDomino( myTable.highestDomino() );
 		
+		System.out.println( "\n\nNew State:\n" + myTable.toString() + "\nEnd new state print.\n");
+		
+		
 		// loop will iterate until a player is declared a winner 
-		while (myTable.player1.getIsWinner() != true && myTable.player2.getIsWinner() != true)
+		while (myTable.players[0].getIsWinner() != true && myTable.players[1].getIsWinner() != true)
 		{
 			
 			

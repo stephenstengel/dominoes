@@ -15,8 +15,10 @@ public class Table
 {
 	private ArrayList<Domino> boneYard;
 	private ArrayList<Domino> lineOfPlay;
-	public Player player1;
-	public Player player2;
+	
+	private final int NUM_PLAYERS = 2;
+	public Player[] players = new Player[NUM_PLAYERS];
+	
 	// stores most recently placed domino
 	private Domino placed;
 	// keeps track of whos turn it is 
@@ -32,8 +34,11 @@ public class Table
 		boneYard = createDominoes();
 		lineOfPlay = new ArrayList<Domino>();
 
-		player1 = new Player( makeStartHand() );
-		player2 = new Player( makeStartHand() );
+		for (int i = 0; i < NUM_PLAYERS; i++)
+		{
+			players[i] = new Player( makeStartHand() );
+		}
+
 
 		//remaining dominoes stay in boneYard
 	}
@@ -53,8 +58,8 @@ public class Table
 	//Method to determine which player has the highest sum of domino dots.
 	public int highestDomino()
 	{
-		int sumPlayer1 = getSumOfDots(player1);
-		int sumPlayer2 = getSumOfDots(player2);
+		int sumPlayer1 = getSumOfDots(players[0]);
+		int sumPlayer2 = getSumOfDots(players[1]);
 		
 		System.out.println("player1: " + sumPlayer1);
 		System.out.println("player2: " + sumPlayer2);
@@ -122,10 +127,10 @@ public class Table
 	
 		if (whoseTurn==1)
 		{
-			ArrayList<Domino> pOneHand= player1.getHand();
+			ArrayList<Domino> pOneHand= players[0].getHand();
 			right=placed.getRightSquare();
 			left= placed.getLeftSquare();
-			for (int i=0;i<player1.getHandSize();i++)
+			for (int i = 0; i < players[0].getHandSize(); i++)
 			{
 				
 				int R1= pOneHand.get(i).getRightSquare();
@@ -137,7 +142,7 @@ public class Table
 					System.out.print("\nPlayer 1 places:" + pOneHand.get(i));
 					placed= pOneHand.get(i);
 					
-					player1.removeFromHand(i);
+					players[0].removeFromHand(i);
 					whoseTurn=2;
 					break;
 					
@@ -153,10 +158,10 @@ public class Table
 		}
 		else if(whoseTurn==2)
 		{
-			ArrayList<Domino> pTwoHand= player2.getHand();
+			ArrayList<Domino> pTwoHand= players[1].getHand();
 			right=placed.getRightSquare();
 			left= placed.getLeftSquare();
-			for (int i=0;i<player2.getHandSize();i++)
+			for (int i=0;i<players[1].getHandSize();i++)
 			{
 				int R2= pTwoHand.get(i).getRightSquare();
 				int L2=pTwoHand.get(i).getLeftSquare();
@@ -165,7 +170,7 @@ public class Table
 					System.out.print("\nPlayer 2 places: " + pTwoHand.get(i));
 					placed= pTwoHand.get(i);
 					
-					player2.removeFromHand(i);
+					players[1].removeFromHand(i);
 					whoseTurn=1;
 					break;
 				}
@@ -186,15 +191,15 @@ public class Table
 		Random randomObject = new Random();
 		if (playerToTakeFrom == 1)		
 		{
-			int dominoIndex = randomObject.nextInt(player1.getHandSize());
-			System.out.print("Player 1 places:" + player1.getHand().get(dominoIndex));
-			placed = player1.removeFromHand(dominoIndex);
+			int dominoIndex = randomObject.nextInt(players[0].getHandSize());
+			System.out.print("Player 1 places:" + players[0].getHand().get(dominoIndex));
+			placed = players[0].removeFromHand(dominoIndex);
 		}
 		else 
 		{
-			int dominoIndex = randomObject.nextInt(player2.getHandSize());
-			System.out.print("Player 2 places:" + player2.getHand().get(dominoIndex));
-			placed = player2.removeFromHand(dominoIndex);
+			int dominoIndex = randomObject.nextInt(players[1].getHandSize());
+			System.out.print("Player 2 places:" + players[1].getHand().get(dominoIndex));
+			placed = players[1].removeFromHand(dominoIndex);
 		}
 		
 		addToRightOfLine(placed);
@@ -208,7 +213,7 @@ public class Table
 	//Will print the current pieces on the table.
 	public String toString()
 	{
-		return "Player1: " + player1 + "\nPlayer2: " + player2 + "\nTable: " + printTablePieces() + "\nLine of play: " + printLineOfPlay() + "\n\n";
+		return "Player1: " + players[0] + "\nPlayer2: " + players[1] + "\nTable: " + printTablePieces() + "\nLine of play: " + printLineOfPlay() + "\n\n";
 	}
 	
 	
