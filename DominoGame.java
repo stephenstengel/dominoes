@@ -13,37 +13,37 @@ public class DominoGame
 		System.out.println("This is going to be a dominoes game!\n");
 		
 		//create the table
-		Table startGame= new Table();
-		System.out.println("Players hands (Table shows avaliable pieces):\n\n" +startGame.toString());
+		Table myTable= new Table();
+		System.out.println("Players hands (Table shows avaliable pieces):\n\n" +myTable.toString());
 		
 		//run the game
 		Domino x; 
-		int highestDom=startGame.highestDomino();
+		int highestDom=myTable.highestDomino();
 		
 		if (highestDom==1)
 		{
 			// call method that places some domino on table and removes it from players hand from table class 
-			x=startGame.placeFirstDomino(1);
+			x=myTable.placeFirstDomino(1);
 			
 		}
 		else
 		{
-			x=startGame.placeFirstDomino(2);
+			x=myTable.placeFirstDomino(2);
 			
 		}
 		
 		// loop will iterate until a player is declared a winner 
-		while (startGame.player1.getIsWinner() != true && startGame.player2.getIsWinner() != true)
+		while (myTable.player1.getIsWinner() != true && myTable.player2.getIsWinner() != true)
 		{
 			
 			
 			// need to add way for players to grab dominos from table and a way to declare a winner 
 			// right now the players take turns placing a domino but when one runs out of required domino the other 
 			// player goes multiple times until they both run out and the game crashes 
-			startGame.nextMove();
+			myTable.nextMove();
 			
 		
-			//startGame.player1.setPlayerAsWinner();
+			//myTable.player1.setPlayerAsWinner();
 			
 			
 		}
