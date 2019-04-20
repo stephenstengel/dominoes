@@ -21,7 +21,7 @@ public class Table
 	
 	// stores most recently placed domino
 	private Domino placed;
-	// keeps track of whos turn it is 
+
 	private int whoseTurn;
 
 	private final int HAND_SIZE = 10;
@@ -124,67 +124,105 @@ public class Table
 	// method has player1/player2 place a domino based on variable whoseTurn 
 	public void nextMove()
 	{
-		int right;
-		int left;
+		int right = getRightmostSquareInLine();
+		int left = getLeftmostSquareInLine();
 	
-		if (whoseTurn==0)
+		boolean didPutPieceThisTurn = false;
+		
+		while (!didPutPieceThisTurn)
 		{
-			ArrayList<Domino> pOneHand= players[0].getHand();
-			right=placed.getRightSquare();
-			left= placed.getLeftSquare();
-			for (int i = 0; i < players[0].getHandSize(); i++)
+			if ( isMatchInHand(players[whoseTurn]) )
 			{
-				
-				int R1= pOneHand.get(i).getRightSquare();
-				int L1= pOneHand.get(i).getLeftSquare();
-				if (right==R1|right==L1|left==R1|right==L1)
-				
+				for (int i = 0; i < players[whoseTurn].getHandSize(); i++)
 				{
+					int thisRight = players[whoseTurn].getHand().get(i).getRightSquare();
+					int thisLeft = players[whoseTurn].getHand().get(i).getLeftSquare();
 					
-					System.out.print("\nPlayer 1 places:" + pOneHand.get(i));
-					placed= pOneHand.get(i);
-					
-					players[0].removeFromHand(i);
-					whoseTurn=1;
-					break;
-					
-				}else 
-				{
-					// right now set to skip player if they don't have needed domino
-					whoseTurn=1;
-				}
+					if (left == thisRight)
+					{
+						System.out.println("\nPlayer " + (whoseTurn + 1) + " places: " + players[whoseTurn].getHand().get(i) );
+						addToLeftOfLine( players[whoseTurn].removeFromHand(i) );
+						didPutPieceThisTurn = true;
+						
+						break;
+					}
+					else if (left == thisLeft)
+					{
+						System.out.println("\nPlayer " + (whoseTurn + 1) + " places: " + players[whoseTurn].getHand().get(i) );
+						addToLeftOfLine( Domino.rotateDomino( players[whoseTurn].removeFromHand(i) ) );
+						didPutPieceThisTurn = true;
+						
+						break;
+					}
+					else if (right == thisRight)
+					{
+						System.out.println("\nPlayer " + (whoseTurn + 1) + " places: " + players[whoseTurn].getHand().get(i) );
+						addToRightOfLine( Domino.rotateDomino( players[whoseTurn].removeFromHand(i) ) );
+						didPutPieceThisTurn = true;
+						
+						break;
+					}
+					else if (right == thisLeft)
+					{
+						System.out.println("\nPlayer " + (whoseTurn + 1) + " places: " + players[whoseTurn].getHand().get(i) );
+						addToRightOfLine( players[whoseTurn].removeFromHand(i) );
+						didPutPieceThisTurn = true;
 
-				
+						break;
+					}
+					else
+					{
+						System.out.println("ERROR WILL ROBINSON!!");
+					}
+					
+				}
+			}
+			else
+			{
+				while ( !isMatchInHand( players[whoseTurn] ) && !isBoneyardEmpty() )
+				{
+					System.out.println("boneyard loop");
+					//need to check if boneyard empty as well.
+					//if they need to draw and it is empty the other player should be set as winner.
+					drawFromBoneyard();
+				}
 			}
 			
 		}
-		else if(whoseTurn==1)
+		
+		
+		
+		System.out.println("switching turns.");
+		updateTurn();
+	}
+	
+	
+	//Adds a domino from the boneyard to the current player's hand.
+	private void drawFromBoneyard()
+	{
+		//need to put a domino in there!
+		players[whoseTurn].addToHand( this.boneYard.remove(0) );
+	}
+	
+	
+	//checks if there is a match in hand to one of the ends of the lineOfPlay
+	private boolean isMatchInHand(Player p)
+	{
+		int right = getRightmostSquareInLine();
+		int left = getLeftmostSquareInLine();
+		
+		for (int i = 0; i < players[whoseTurn].getHandSize(); i++)
 		{
-			ArrayList<Domino> pTwoHand= players[1].getHand();
-			right=placed.getRightSquare();
-			left= placed.getLeftSquare();
-			for (int i=0;i<players[1].getHandSize();i++)
+			int thisRight = players[whoseTurn].getHand().get(i).getRightSquare();
+			int thisLeft = players[whoseTurn].getHand().get(i).getLeftSquare();
+			
+			if ( (left == thisRight) || ( left == thisLeft) || (right == thisRight) || (right == thisLeft) )
 			{
-				int R2= pTwoHand.get(i).getRightSquare();
-				int L2=pTwoHand.get(i).getLeftSquare();
-				if (right==R2|right==L2| left== R2| left==L2)
-				{
-					System.out.print("\nPlayer 2 places: " + pTwoHand.get(i));
-					placed= pTwoHand.get(i);
-					
-					players[1].removeFromHand(i);
-					whoseTurn=0;
-					break;
-				}
-				else
-				{
-					
-					whoseTurn=0;
-					
-				}
+				return true;
 			}
 		}
 		
+		return false;
 	}
 	
 	// method to place first domino onto table from players hand 
@@ -207,7 +245,7 @@ public class Table
 	//Will print the current pieces on the table.
 	public String toString()
 	{
-		return "Player1: " + players[0] + "\nPlayer2: " + players[1] + "\nTable: " + printTablePieces() + "\nLine of play: " + printLineOfPlay() + "\n\n";
+		return "Player1: " + players[0] + "\nPlayer2: " + players[1] + "\nBoneyard: " + printBoneyard() + "\nLine of play: " + printLineOfPlay() + "\n\n";
 	}
 	
 	
@@ -264,7 +302,7 @@ public class Table
 	
 	//might need/want to make static later?
 	//change to iterate through printing punctuation and toString of each domino.
-	private String printTablePieces()
+	private String printBoneyard()
 	{
 		return boneYard.toString(); //change later
 	}
@@ -290,7 +328,7 @@ public class Table
 	//Updates the current turn
 	private void updateTurn()
 	{
-		whoseTurn = (whoseTurn % NUM_PLAYERS);
+		whoseTurn = (whoseTurn + 1) % NUM_PLAYERS;
 	}
 	
 	//Checks if there are any winners on the table.
@@ -317,5 +355,17 @@ public class Table
 		}
 		
 		return false;
+	}
+	
+	//Gets the value of the rightmost square on the lineOfPlay
+	private int getLeftmostSquareInLine()
+	{
+		return lineOfPlay.get(0).getLeftSquare();
+	}
+	
+	//Get the value of the leftmost square on the lineOfPlay
+	private int getRightmostSquareInLine()
+	{
+		return lineOfPlay.get( lineOfPlay.size() - 1 ).getRightSquare();
 	}
 }
