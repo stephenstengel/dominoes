@@ -181,31 +181,26 @@ public class Table
 	}
 	
 	// method to place first domino onto table from players hand 
-	public Domino placeFirstDomino(int player)
+	public Domino placeFirstDomino(int playerToTakeFrom)
 	{
-	
 		Random randomObject = new Random();
-		if (player==1)		
+		if (playerToTakeFrom == 1)		
 		{
-			ArrayList<Domino> hand1= player1.getHand();
-			int dominoIndexOne = randomObject.nextInt(player1.getHandSize());
-			System.out.print("Player 1 places:" + hand1.get(dominoIndexOne));
-			placed= hand1.get(dominoIndexOne);
-			whoseTurn=2;
-			player1.removeFromHand(dominoIndexOne);
-			
-		}else 
-		{
-			ArrayList<Domino> hand2=player2.getHand();
-			int dominoIndexTwo = randomObject.nextInt(player2.getHandSize());
-			System.out.print("Player 2 places: " +hand2.get(dominoIndexTwo));
-			placed= hand2.get(dominoIndexTwo);
-			whoseTurn=1;
-			player2.removeFromHand(dominoIndexTwo);
-			
+			int dominoIndex = randomObject.nextInt(player1.getHandSize());
+			System.out.print("Player 1 places:" + player1.getHand().get(dominoIndex));
+			placed = player1.removeFromHand(dominoIndex);
 		}
-		return placed;
+		else 
+		{
+			int dominoIndex = randomObject.nextInt(player2.getHandSize());
+			System.out.print("Player 2 places:" + player2.getHand().get(dominoIndex));
+			placed = player2.removeFromHand(dominoIndex);
+		}
 		
+		addToRightOfLine(placed);
+		updateTurn();
+		
+		return placed;
 	}
 		
 	
@@ -276,21 +271,27 @@ public class Table
 	}
 	
 	//Returns the contents of the line of play as a string.
-	private String printLineOfPlay()
+	public String printLineOfPlay()
 	{
 		return lineOfPlay.toString();
 	}
     
     //Adds to the left of the line
-    public void addToLeftOfLine(Domino dominoToAdd)
+    private void addToLeftOfLine(Domino dominoToAdd)
     {
 		lineOfPlay.add(0, dominoToAdd);
 	}
 	
 	//Adds to the right of the line.
-	public void addToRightOfLine(Domino dominoToAdd)
+	private void addToRightOfLine(Domino dominoToAdd)
 	{
 		lineOfPlay.add(dominoToAdd);
+	}
+	
+	//Updates the current turn
+	private void updateTurn()
+	{
+		whoseTurn = (whoseTurn % 2) + 1;
 	}
 	
 	
