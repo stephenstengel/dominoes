@@ -30,6 +30,7 @@ public class Table
 	{
 		//make the dominoes
 		boneYard = createDominoes();
+		lineOfPlay = new ArrayList<Domino>();
 
 		player1 = new Player( makeStartHand() );
 		player2 = new Player( makeStartHand() );
@@ -212,7 +213,7 @@ public class Table
 	//Will print the current pieces on the table.
 	public String toString()
 	{
-		return "Player1: " + player1 + "\n\nPlayer2: " + player2 + "\n\nTable: " + printTablePieces();
+		return "Player1: " + player1 + "\nPlayer2: " + player2 + "\nTable: " + printTablePieces() + "\nLine of play: " + printLineOfPlay() + "\n\n";
 	}
 	
 	
@@ -273,5 +274,24 @@ public class Table
 	{
 		return boneYard.toString(); //change later
 	}
+	
+	//Returns the contents of the line of play as a string.
+	private String printLineOfPlay()
+	{
+		return lineOfPlay.toString();
+	}
     
+    //Adds to the left of the line
+    public void addToLeftOfLine(Domino dominoToAdd)
+    {
+		lineOfPlay.add(0, dominoToAdd);
+	}
+	
+	//Adds to the right of the line.
+	public void addToRightOfLine(Domino dominoToAdd)
+	{
+		lineOfPlay.add(dominoToAdd);
+	}
+	
+	
 }
