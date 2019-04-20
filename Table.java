@@ -25,6 +25,8 @@ public class Table
 	private int whoseTurn;
 
 	private final int HAND_SIZE = 10;
+	
+	private boolean areThereAnyWinner = false;
 
 
 	//constructor
@@ -77,7 +79,7 @@ public class Table
 			System.out.println("Chosing at random...");
 
 			Random randomObject = new Random();
-			int randomPlayerNumber = randomObject.nextInt(2) + 1;
+			int randomPlayerNumber = randomObject.nextInt(2);
 			System.out.println("Player " + randomPlayerNumber + " goes first!");
 			
 			return randomPlayerNumber;
@@ -291,5 +293,29 @@ public class Table
 		whoseTurn = (whoseTurn % NUM_PLAYERS);
 	}
 	
+	//Checks if there are any winners on the table.
+	//Returns -1 if none, or the number of the player if they are a winner.
+	public int checkAreThereAnyWinners()
+	{
+		for (int i = 0; i < NUM_PLAYERS; i++)
+		{
+			if (this.players[i].checkIfWinner() )
+			{
+				return i;
+			}
+		}
+		
+		return -1;
+	}
 	
+	//Checks if boneyard is empty
+	public boolean isBoneyardEmpty()
+	{
+		if ( boneYard.size() <= 0 )
+		{
+			return true;
+		}
+		
+		return false;
+	}
 }

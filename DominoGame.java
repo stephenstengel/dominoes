@@ -23,9 +23,8 @@ public class DominoGame
 		
 		
 		// loop will iterate until a player is declared a winner 
-		while ( !(myTable.players[0].checkIfWinner() || myTable.players[1].checkIfWinner() ) )
+		while ( myTable.checkAreThereAnyWinners() == -1 )
 		{
-			
 			
 			// need to add way for players to grab dominos from table and a way to declare a winner 
 			// right now the players take turns placing a domino but when one runs out of required domino the other 
@@ -36,6 +35,10 @@ public class DominoGame
 			//myTable.player1.setPlayerAsWinner();
 			
 			
+			if ( myTable.isBoneyardEmpty() )
+			{
+				break;
+			}
 		}
 		
 		
@@ -47,6 +50,14 @@ public class DominoGame
 				System.out.println("\n\nPlayer " + (i + 1) + " is the winner!");
 			}
 		}
+		
+		if ( myTable.isBoneyardEmpty() )
+		{
+			System.out.println("It was a tie!");
+			
+			System.out.println("Board State:\n" + myTable.toString() );
+		}
+		
 		
 		
 	}
