@@ -14,13 +14,13 @@
 public class Table
 {
 	private ArrayList<Domino> boneYard;
-	
+	private ArrayList<Domino> lineOfPlay;
 	public Player player1;
 	public Player player2;
 	// stores most recently placed domino
 	private Domino placed;
 	// keeps track of whos turn it is 
-	private int turn;
+	private int whoseTurn;
 
 	private final int HAND_SIZE = 10;
 
@@ -108,18 +108,18 @@ public class Table
 	// getter method returns whos turn it is to place a domino
 	public int getTurn(){
 		
-		return turn;
+		return whoseTurn;
 	}
 	
 	
 	
-	// method has player1/player2 place a domino based on variable turn 
+	// method has player1/player2 place a domino based on variable whoseTurn 
 	public void nextMove()
 	{
 		int right;
 		int left;
 	
-		if (turn==1)
+		if (whoseTurn==1)
 		{
 			ArrayList<Domino> pOneHand= player1.getHand();
 			right=placed.getRightSquare();
@@ -137,20 +137,20 @@ public class Table
 					placed= pOneHand.get(i);
 					
 					player1.removeFromHand(i);
-					turn=2;
+					whoseTurn=2;
 					break;
 					
 				}else 
 				{
 					// right now set to skip player if they don't have needed domino
-					turn=2;
+					whoseTurn=2;
 				}
 
 				
 			}
 			
 		}
-		else if(turn==2)
+		else if(whoseTurn==2)
 		{
 			ArrayList<Domino> pTwoHand= player2.getHand();
 			right=placed.getRightSquare();
@@ -165,13 +165,13 @@ public class Table
 					placed= pTwoHand.get(i);
 					
 					player2.removeFromHand(i);
-					turn=1;
+					whoseTurn=1;
 					break;
 				}
 				else
 				{
 					
-					turn=1;
+					whoseTurn=1;
 					
 				}
 			}
@@ -179,7 +179,7 @@ public class Table
 		
 	}
 	
-	// method to place a domino onto table from players hand 
+	// method to place first domino onto table from players hand 
 	public Domino placeFirstDomino(int player)
 	{
 	
@@ -190,7 +190,7 @@ public class Table
 			int dominoIndexOne = randomObject.nextInt(player1.getHandSize());
 			System.out.print("Player 1 places:" + hand1.get(dominoIndexOne));
 			placed= hand1.get(dominoIndexOne);
-			turn=2;
+			whoseTurn=2;
 			player1.removeFromHand(dominoIndexOne);
 			
 		}else 
@@ -199,7 +199,7 @@ public class Table
 			int dominoIndexTwo = randomObject.nextInt(player2.getHandSize());
 			System.out.print("Player 2 places: " +hand2.get(dominoIndexTwo));
 			placed= hand2.get(dominoIndexTwo);
-			turn=1;
+			whoseTurn=1;
 			player2.removeFromHand(dominoIndexTwo);
 			
 		}
