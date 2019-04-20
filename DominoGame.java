@@ -18,19 +18,7 @@ public class DominoGame
 		
 		//run the game
 		Domino x; 
-		int highestDom=myTable.highestDomino();
-		
-		if (highestDom==1)
-		{
-			// call method that places some domino on table and removes it from players hand from table class 
-			x=myTable.placeFirstDomino(1);
-			
-		}
-		else
-		{
-			x=myTable.placeFirstDomino(2);
-			
-		}
+		x = myTable.placeFirstDomino( myTable.highestDomino() );
 		
 		// loop will iterate until a player is declared a winner 
 		while (myTable.player1.getIsWinner() != true && myTable.player2.getIsWinner() != true)
