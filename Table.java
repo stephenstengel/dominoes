@@ -13,7 +13,7 @@
 
 public class Table
 {
-	private ArrayList<Domino> dominoesOnTable;
+	private ArrayList<Domino> boneYard;
 	
 	public Player player1;
 	public Player player2;
@@ -29,12 +29,12 @@ public class Table
 	public Table()
 	{
 		//make the dominoes
-		dominoesOnTable = createDominoes();
+		boneYard = createDominoes();
 
 		player1 = new Player( makeStartHand() );
 		player2 = new Player( makeStartHand() );
 
-		//remaining dominoes stay in dominoesOnTable
+		//remaining dominoes stay in boneYard
 	}
 
 
@@ -43,7 +43,7 @@ public class Table
 	{
 		ArrayList<Domino> startHand = new ArrayList<Domino>();
 		for (int i = 0; i < HAND_SIZE; i++){
-			startHand.add( dominoesOnTable.remove(0) );
+			startHand.add( boneYard.remove(0) );
 		}
 
 		return startHand;
@@ -271,7 +271,7 @@ public class Table
 	//change to iterate through printing punctuation and toString of each domino.
 	private String printTablePieces()
 	{
-		return dominoesOnTable.toString(); //change later
+		return boneYard.toString(); //change later
 	}
     
 }
