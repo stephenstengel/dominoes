@@ -45,5 +45,11 @@ public class Domino
 	{
 		return "[" + leftSquare + "|" + rightSquare + "]";
 	}
+	
+	//Rotates a domino in place.
+	public static Domino rotateDomino(Domino d)
+	{
+		return new Domino(d.rightSquare, d.leftSquare);
+	}
     
 }
