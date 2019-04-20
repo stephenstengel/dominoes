@@ -23,7 +23,7 @@ public class DominoGame
 		
 		
 		// loop will iterate until a player is declared a winner 
-		while (myTable.players[0].getIsWinner() != true && myTable.players[1].getIsWinner() != true)
+		while ( !(myTable.players[0].checkIfWinner() || myTable.players[1].checkIfWinner() ) )
 		{
 			
 			
@@ -36,6 +36,16 @@ public class DominoGame
 			//myTable.player1.setPlayerAsWinner();
 			
 			
+		}
+		
+		
+		
+		for (int i = 0; i < 2; i++)
+		{
+			if (myTable.players[i].checkIfWinner() )
+			{
+				System.out.println("\n\nPlayer " + (i + 1) + " is the winner!");
+			}
 		}
 		
 		
