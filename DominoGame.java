@@ -22,44 +22,41 @@ public class DominoGame
 		System.out.println( "\n\nNew State:\n" + myTable.toString() + "\nEnd new state print.\n");
 		
 		
-		// loop will iterate until a player is declared a winner 
-		while ( myTable.checkAreThereAnyWinners() == -1 )
-		{
-			
-			// need to add way for players to grab dominos from table and a way to declare a winner 
-			// right now the players take turns placing a domino but when one runs out of required domino the other 
-			// player goes multiple times until they both run out and the game crashes 
-			myTable.nextMove();
-			
+		int winnerValue = myTable.playGame();
 		
-			//myTable.player1.setPlayerAsWinner();
+		System.out.println("\n\n##################################"
+							+ "\nBoard state: " + myTable.toString() );
+		
+		System.out.println("Value of winnerValue: " + winnerValue);
+		
+		if (winnerValue <= -1)
+		{
+			System.out.println("The game was blocked by Player " + (winnerValue * -1) + "! Player with fewest dots wins!");
 			
+			System.out.println("Player 1 has: " + myTable.players[0].getNumberOfDots() + " dots!");
+			System.out.println("Player 2 has: " + myTable.players[1].getNumberOfDots() + " dots!");
 			
-			if ( myTable.isBoneyardEmpty() )
+			if ( myTable.players[0].getNumberOfDots() == myTable.players[1].getNumberOfDots() )
 			{
-				break;
+				System.out.println("It's a tie! Each player has the same number of dots!");
+			}
+			else if ( myTable.players[0].getNumberOfDots() > myTable.players[1].getNumberOfDots() )
+			{
+				System.out.println("Player 2 wins!");
+			}
+			else
+			{
+				System.out.println("Player 1 wins!");
 			}
 		}
-		
-		
-		
-		for (int i = 0; i < 2; i++)
+		else if (winnerValue == 0 || winnerValue == 1)
 		{
-			if (myTable.players[i].checkIfWinner() )
-			{
-				System.out.println("\n\nPlayer " + (i + 1) + " is the winner!");
-				System.out.println("Board State:\n" + myTable.toString() );
-			}
+			System.out.println("The winner is Player" + (winnerValue + 1) + "!");
 		}
-		
-		if ( myTable.isBoneyardEmpty() )
+		else
 		{
-			System.out.println("It was a tie!");
-			
-			System.out.println("Board State:\n" + myTable.toString() );
+			System.out.println("ERROR in main!");
 		}
-		
-		
 		
 	}
 }

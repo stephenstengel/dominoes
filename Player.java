@@ -8,6 +8,7 @@ public class Player
 {
 	private ArrayList<Domino> hand;
 	private boolean isWinner;
+	private int numberOfDots;
 	
 	
 	//constructor. Accepts arraylist of dominoes to use as hand.
@@ -60,11 +61,11 @@ public class Player
 	//for the whole player class.
 	public String toString()
 	{
-		String outString = "\nWinner:";
-		outString += isWinner + "\n";
-		outString += handToString();
+		return  "\nWinner: " + isWinner
+				+ "\nhand: " + handToString()
+				+ "\nDots: " + getNumberOfDots()
+				+ "\n";
 		
-		return outString;
 	}
 	
 	public int getHandSize()
@@ -91,13 +92,25 @@ public class Player
 	}
 	
 	//checks if hand is empty or if player was set as winner by something else.
-	public boolean checkIfWinner()
+	public boolean checkAndSetIfWinner()
 	{
 		if ( this.checkIfHandEmpty() || this.getIsWinner() )
 		{
+			setPlayerAsWinner();
+
 			return true;
 		}
 		
 		return false;
+	}
+	
+	public int getNumberOfDots()
+	{
+		return numberOfDots;
+	}
+	
+	public void setNumberOfDots(int dots)
+	{
+		this.numberOfDots = dots;
 	}
 }
