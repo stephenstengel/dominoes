@@ -204,7 +204,7 @@ public class Table
 			}
 			else
 			{
-				System.out.println("ERROR in place a piece!!");
+				System.out.println("Player " + (whoseTurn + 1) + " could not place domino number " + i);
 			}
 			
 		}
