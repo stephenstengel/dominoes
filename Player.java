@@ -91,10 +91,12 @@ public class Player
 	}
 	
 	//checks if hand is empty or if player was set as winner by something else.
-	public boolean checkIfWinner()
+	public boolean checkAndSetIfWinner()
 	{
 		if ( this.checkIfHandEmpty() || this.getIsWinner() )
 		{
+			setPlayerAsWinner();
+
 			return true;
 		}
 		

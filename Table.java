@@ -351,7 +351,7 @@ public class Table
 	{
 		for (int i = 0; i < NUM_PLAYERS; i++)
 		{
-			if (this.players[i].checkIfWinner() )
+			if (this.players[i].checkAndSetIfWinner() )
 			{
 				return i;
 			}
