@@ -1,31 +1,38 @@
 /*
- * Dominoes Game
+ * DominoesGame.java 
  * 
- * Copyright 2019 Stephen Stengel <stephen.stengel@cwu.edu>,
- *                Jose Rodriquez
+ * This is where the Domino game will be played 
+ * 
+ * Stephen Stengel
+ * Jose Rodriquez
+ * 
  */
 
 
 public class DominoGame
 {
+	
 	public static void main (String args[])
 	{
+		
 		System.out.println("This is going to be a dominoes game!\n");
 		
 		//create the table
 		Table myTable= new Table();
+		//print inital state of table and players 
 		System.out.println("State of table:\n\n" + myTable.toString());
 		
 		//run the game
 		myTable.placeFirstDomino( myTable.highestDomino() );
 		
+		//print state of table after first domino is placed 
 		System.out.println( "\n\nNew State:\n" + myTable.toString() + "\nEnd new state print.\n");
 		
-		
+		//winning player will be winnerValue+1
 		int winnerValue = myTable.playGame();
 		
 		System.out.println("\n\n##################################"
-							+ "\nBoard state: " + myTable.toString() );
+							+ "\nBoard state: \n" + myTable.toString() );
 		
 		System.out.println("Value of winnerValue: " + winnerValue);
 		

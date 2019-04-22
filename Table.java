@@ -13,6 +13,8 @@
 
 public class Table
 {
+	//fields 
+	//keeps track of dominoes on table 
 	private ArrayList<Domino> boneYard;
 	private ArrayList<Domino> lineOfPlay;
 	
@@ -21,9 +23,9 @@ public class Table
 	
 	// stores most recently placed domino
 	private Domino placed;
-
+	//keeps track of player who places next
 	private int whoseTurn;
-
+	//number of dominos distributed to each player when game begins
 	private final int HAND_SIZE = 10;
 	
 	private boolean areThereAnyWinner = false;
@@ -35,7 +37,7 @@ public class Table
 		//make the dominoes
 		boneYard = createDominoes();
 		lineOfPlay = new ArrayList<Domino>();
-
+		//create players 
 		for (int i = 0; i < NUM_PLAYERS; i++)
 		{
 			players[i] = new Player( makeStartHand() );
@@ -46,7 +48,7 @@ public class Table
 	}
 
 
-	//Make a player starting hand for use the constructor
+	//Make a players starting hand 
 	private ArrayList<Domino> makeStartHand()
 	{
 		ArrayList<Domino> startHand = new ArrayList<Domino>();
@@ -63,19 +65,19 @@ public class Table
 		int sumPlayer1 = getSumOfDots(players[0]);
 		int sumPlayer2 = getSumOfDots(players[1]);
 		
-		System.out.println("player1: " + sumPlayer1);
-		System.out.println("player2: " + sumPlayer2);
+		//System.out.println("player1: " + sumPlayer1);
+		//System.out.println("player2: " + sumPlayer2);
 		
 		if (sumPlayer1 > sumPlayer2)
 		{
-			System.out.println("\nPlayer 1 has the largest domino so"
+			System.out.println("Player 1 has the heaviest hand so"
 								+ " they will place first");
 
 			return (int)0;
 		}
 		else if (sumPlayer1 == sumPlayer2)
 		{
-			System.out.println("\nBoth players are tied for number of dots!");
+			System.out.println("Both players are tied for number of dots!");
 			System.out.println("Chosing at random...");
 
 			Random randomObject = new Random();
@@ -86,14 +88,14 @@ public class Table
 		}
 		else
 		{
-			System.out.println("\nPlayer 2 has the largest domino so he will place first");
+			System.out.println("Player 2 has the heaviest hand so they will place first");
 
 			return (int)1;
 		}
 	}
 	
 	//Returns the sum of dots on dominoes in hand. Also saves it in a field.
-	public int getSumOfDots(Player aPlayer)  //could add a global field for number of dots.
+	public int getSumOfDots(Player aPlayer)
 	{
 		int sumOfDots = 0;
 		
@@ -114,13 +116,13 @@ public class Table
 		aPlayer.setNumberOfDots(sumOfDots);
 		return sumOfDots;
 	}
-	// getter method returns most recently placed domino 
+	//getter method returns most recently placed domino 
 	public Domino getPlaced(){
 		
 		return placed;
 		
 	}
-	// getter method returns whos turn it is to place a domino
+	//getter method returns whos turn it is to place a domino
 	public int getTurn(){
 		
 		return whoseTurn;
@@ -131,7 +133,7 @@ public class Table
 	//If the game is blocked, returns -1 if player1 blocked, and -2 if blocked by player2.
 	public int playGame()
 	{
-		System.out.println("Entering playGame");
+		//System.out.println("Entering playGame");
 		while ( !isGameOver() )
 		{
 			while ( !isMatchInHand() )
@@ -150,7 +152,8 @@ public class Table
 				
 				drawFromBoneyard();
 			}
-			System.out.println("Entering play a piece part");
+			//System.out.println("Entering play a piece part");
+			System.out.println("Next player is looking for a piece to place...");
 			//play
 			placeAPiece();
 			
@@ -159,11 +162,12 @@ public class Table
 			updateTurn();
 		}
 		
-		System.out.println("Entering winner check loop");
+		//System.out.println("Entering winner check loop");
+		System.out.println("Looks like we have a winner...");
 		
 		return whoWon();
 	}
-	
+	//method determines if player has needed domino and places it 
 	private void placeAPiece()
 	{
 		int right = getRightmostSquareInLine();
@@ -246,6 +250,7 @@ public class Table
 	//Adds a domino from the boneyard to the current player's hand.
 	private void drawFromBoneyard()
 	{
+		
 		//need to put a domino in there!
 		players[whoseTurn].addToHand( this.boneYard.remove(0) );
 	}
@@ -271,7 +276,7 @@ public class Table
 		return false;
 	}
 	
-	// method to place first domino onto table from players hand 
+	//method to place first domino onto table from players hand 
 	public void placeFirstDomino(int playerToTakeFrom)
 	{
 		Random randomObject = new Random();
@@ -305,11 +310,12 @@ public class Table
 	}
 	
 	
-	//need code added to create the correct number and combinations.
+	//code creates the correct number and combinations do dominoes
 	private ArrayList<Domino> createUnsortedDominoes()
 	{
+		//ArrayList stores created dominoes 
 		ArrayList<Domino> unsortedDominoes = new ArrayList<Domino>();
-		//code creates 28 domino set 
+		//creates 28 domino set 
 		unsortedDominoes.add(new Domino(0,0));
 		unsortedDominoes.add(new Domino(1,0));
 		unsortedDominoes.add(new Domino(2,0));
@@ -342,12 +348,12 @@ public class Table
 		
 		return unsortedDominoes;
 	}
-	
+	//method invoked shuffleDominoes method 
 	private ArrayList<Domino> sortDominoes(ArrayList<Domino> dominoesToSort)
 	{
 		return Shuffle.shuffleDominoes(dominoesToSort);
 	}
-	
+	//method invokes createUnsortedDominoes() method 
 	private ArrayList<Domino> createDominoes()
 	{
 		ArrayList<Domino> someDominoes = createUnsortedDominoes();

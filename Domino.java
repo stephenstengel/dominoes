@@ -10,10 +10,11 @@ import java.util.ArrayList;
 
 public class Domino
 {
+	//fields 
     private int leftSquare;
     private int rightSquare;
     
-    //constructor
+    //constructor takes two integers and creates a single domino
     public Domino(int leftInput, int rightInput)
     {
 		setSquareValues(leftInput, rightInput);
@@ -21,7 +22,7 @@ public class Domino
 		//System.out.println("Domino " + this + " created!");
 	}
 	
-	
+	// used by the contructor to set values of domino
 	private void setSquareValues(int leftInput, int rightInput)
 	{
 		leftSquare = leftInput;
@@ -29,7 +30,7 @@ public class Domino
 	}
 	
 	
-	//getter methods. Or we could just make leftSquare and rightSquare public.
+	//getter methods for left and right values of domino 
 	public int getLeftSquare()
 	{
 		return leftSquare;

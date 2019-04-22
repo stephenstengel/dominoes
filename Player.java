@@ -1,35 +1,41 @@
 /*
  * Player.java
+ * 
+ * This class hold all information that deals with each individual player
+ * 
  */
 
 import java.util.ArrayList;
 
 public class Player
 {
+	//fields 
 	private ArrayList<Domino> hand;
 	private boolean isWinner;
 	private int numberOfDots;
 	
 	
-	//constructor. Accepts arraylist of dominoes to use as hand.
+	//constructor accepts arraylist of dominoes to use as hand.
 	public Player(ArrayList<Domino> inputHand)
 	{
 		hand = inputHand;
 		isWinner = false;
 	}
+	//getter method retrieves value in isWinner field
 	public boolean getIsWinner()
 	{
 		
 		return isWinner;
 		
 	}
+	//method removes a domino from hand ArrayList 
 	public Domino removeFromHand(int dIndex)
 	{
 		
 		return hand.remove(dIndex);
 		
 	}
-	// take from domino from table and add it to players hand 
+	//take domino from table and add it to players hand 
 	public void addToHand(Domino dominoesFromTable)
 	{
 		
@@ -37,7 +43,7 @@ public class Player
 		
 		
 	}
-	
+	//returns dominoes in players hand as String 
 	public String handToString()
 	{
 		String outString = "";
@@ -52,13 +58,13 @@ public class Player
 		return outString;
 	}
 	
-	
+	//method sets isWinner field to true when player wins game
 	public void setPlayerAsWinner()
 	{
 		isWinner = true;
 	}
 	
-	//for the whole player class.
+	//returns information for the whole player class
 	public String toString()
 	{
 		return  "\nWinner: " + isWinner
@@ -68,11 +74,12 @@ public class Player
 		
 	}
 	
+	//returns number of dominoes in players hand 
 	public int getHandSize()
 	{
 		return hand.size();
 	}
-	
+	//returns dominoes in players hand as an ArrayList<Domino>
 	public ArrayList<Domino> getHand()
 	{
 		ArrayList<Domino> copy = new ArrayList<Domino>();
@@ -80,7 +87,7 @@ public class Player
 		
 		return copy;
 	}
-	
+	//returns true if the player has no dominoes in their hand 
 	public boolean checkIfHandEmpty()
 	{
 		if ( this.getHandSize() <= 0 )
@@ -104,11 +111,12 @@ public class Player
 		return false;
 	}
 	
+	//returns sum of domino dots 
 	public int getNumberOfDots()
 	{
 		return numberOfDots;
 	}
-	
+	//setter method for numberOfDots field 
 	public void setNumberOfDots(int dots)
 	{
 		this.numberOfDots = dots;
