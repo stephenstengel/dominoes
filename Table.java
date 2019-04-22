@@ -281,12 +281,18 @@ public class Table
 	{
 		Random randomObject = new Random();
 		
+		if (playerToTakeFrom==1)
+		{
+			updateTurn();
+		}
+		
 		int dominoIndex = randomObject.nextInt(players[playerToTakeFrom].getHandSize());
 		
 		System.out.print("Player " + (playerToTakeFrom + 1) + " places:" + players[playerToTakeFrom].getHand().get(dominoIndex));
 		
 		placed = players[playerToTakeFrom].removeFromHand(dominoIndex);
 		
+	
 		addToRightOfLine(placed);
 		updateTurn();
 	}
@@ -391,6 +397,7 @@ public class Table
 	private void updateTurn()
 	{
 		whoseTurn = (whoseTurn + 1) % NUM_PLAYERS;
+		
 	}
 	
 	//Checks if there are any winners on the table.

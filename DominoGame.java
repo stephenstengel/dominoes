@@ -34,7 +34,7 @@ public class DominoGame
 		System.out.println("\n\n##################################"
 							+ "\nBoard state: \n" + myTable.toString() );
 		
-		System.out.println("Value of winnerValue: " + winnerValue);
+		//System.out.println("Value of winnerValue: " + winnerValue);
 		
 		if (winnerValue <= -1)
 		{
